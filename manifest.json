@@ -1,0 +1,32 @@
+{
+	"manifest_version": 2,
+
+	"name": "Bugerbox",
+	"description": "这是一个bug管理工具",
+	"version": "1.0",
+
+	"icons" : {
+        "16" : "icon.png",
+        "48" : "icon.png",
+        "128" : "icon.png"
+    },
+    "browser_action": {
+        "default_title": "Bugerbox",
+        "default_icon": "icon.png",
+        "default_popup": "login.html"
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*/*", "file://*"],
+            "js": ["js/content.js"]
+        }
+    ],
+    "background": {
+        "scripts": ["js/background.js"],
+        "persistent": false
+    },
+    "permissions": [
+        "storage",
+        "tabs"
+    ]
+}

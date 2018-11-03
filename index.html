@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bugerbox</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_900209_sq2pwpy2qek.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/selectator.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div class="buger-container">
+		<div class="header">
+			<div class="logo">
+				BugerBox
+			</div>
+			<div class="user-menu">
+				<i class="iconfont user"></i>
+			</div>
+		</div>
+		<div class="navbar">
+			<div class="menu">
+				<div class="menu-item menu-item-1 hoverItem">
+					项目管理
+				</div>
+				<div class="menu-item menu-item-1">
+					用户管理
+				</div>
+				<div class="menu-item menu-item-1">
+					组管理
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="option-btn">
+				<div id="create-project" class="bug-btn blue600">
+					新建项目
+				</div>
+			</div>
+			<div class="bug-list project-list">
+				<div class="bug-list-head">
+					<div>项目名称</div>
+					<div>项目描述</div>
+					<div>负责人</div>
+					<div>负责人邮箱</div>
+					<div>开发人员</div>
+					<div>操作</div>
+				</div>
+				<div class="bug-list-body">
+					<div class="bug-list-item">
+						<div>测试项目</div>
+						<div>项目描述项目描述项目描述项目描述项目描述项目描述</div>
+						<div>admin</div>
+						<div>admin@163.com</div>
+						<div>10</div>
+						<div>
+							<span class="iconfont-options" data-id="1">
+								<i class="iconfont option"></i>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="index-option-menu" class="option-menu">
+		<div class="option-menu-item edit">
+			<i class="iconfont icon-edit"></i>
+			<span>编辑</span>
+		</div>
+		<div class="option-menu-item delete">
+			<i class="iconfont icon-delete"></i>
+			<span>删除</span>
+		</div>
+	</div>
+
+	<div id="dialog-index" class="dialog-component">
+		<div class="content">
+			<div class="create-project-dialog">
+				<div class="head">创建新项目</div>
+				<div class="body">
+					<div class="tabs">
+						<div class="tabs-item current-tabs-item" data-id="0"><span>基本信息</span></div>
+						<div class="tabs-item" data-id="1"><span>开发人员</span></div>
+					</div>
+
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide blue-slide">
+								<div class="project-base-form">
+									<div class="input-field">
+										<label for="pName">项目名称</label>
+										<input type="text" id="pName" placeholder="输入项目名称">
+										<p id="pName-err" class="input-error"></p>
+									</div>
+									<div class="input-field">
+										<label for="pDesc">项目描述</label>
+										<input type="text" id="pDesc" placeholder="输入项目描述">
+										<p id="pDesc-err" class="input-error"></p>
+									</div>
+									<div class="input-field">
+										<label for="pDesc">负责人</label>
+										<select id="select-admin" placeholder="请选择负责人">
+											<option value=""></option>
+											<option value="1">admin1</option>
+											<option value="2">admin2</option>
+											<option value="3">admin3</option>
+											<option value="4">admin4</option>
+										</select>
+										<p id="pAdmin-err" class="input-error"></p>
+									</div>
+									
+								</div>
+							</div>
+							<div class="swiper-slide red-slide">slider2</div>
+						</div>
+					</div>
+
+
+					
+
+				</div>
+				<div class="foot">
+					<div id="close-create-dialog" class="bug-btn grey600">
+						取消
+					</div>
+					<div id="confirm-create-project" class="bug-btn blue600">
+						确定
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mask"></div>
+	</div>
+	<div id="dialog-index-delete" class="dialog-component dialog-delete">
+		<div class="content">
+			<div class="project-delete-dialog">
+				<p>是否确定删除这个应用</p>
+				<div class="foot">
+					<div id="close-delete-dialog" class="bug-btn blue600">
+						取消
+					</div>
+					<div id="confirm-delete-project" class="bug-btn red600">
+						确定
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mask"></div>
+	</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/selectator.js"></script>
+	<script src="js/index.js"></script>
+</body>
+</html>
