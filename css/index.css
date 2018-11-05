@@ -212,6 +212,9 @@ html, body{
 .create-project-dialog .body .project-base-form .input-field{
 	width: 320px;
 }
+.create-project-dialog .body .project-base-form.bugs-form .input-field{
+	width: 450px;
+}
 .create-project-dialog .body .project-base-form .input-field input::-webkit-input-placeholder{
 	color: #cecece;
 	font-size: 12px;
@@ -276,6 +279,61 @@ html, body{
 	font-size: 14px;
 	width: 70px;
 	margin: 0 10px;
+}
+
+
+/*========================详情页的列表========================*/
+.buger-container .main .project-bug-list .bug-list-head{
+	height: 50px;
+	color: #999;
+}
+.buger-container .main .project-bug-list .bug-list-item{
+	padding: 0 8px;
+	min-height: 50px;
+	color: #333;
+}
+.buger-container .main .project-bug-list .bug-list-item:hover{
+	cursor: pointer;
+	background: rgba(187, 187, 187, 0.5);
+}
+.buger-container .main .project-bug-list .bug-list-head>div:nth-of-type(1),
+.buger-container .main .project-bug-list .bug-list-item>div:nth-of-type(1){
+	width: 15%;
+}
+.buger-container .main .project-bug-list .bug-list-head>div:nth-of-type(2),
+.buger-container .main .project-bug-list .bug-list-item>div:nth-of-type(2){
+	width: 55%;
+	padding: 10px 15px 10px 0;
+}
+.buger-container .main .project-bug-list .bug-list-head>div:nth-of-type(3),
+.buger-container .main .project-bug-list .bug-list-item>div:nth-of-type(3){
+	width: 10%;
+}
+.buger-container .main .project-bug-list .bug-list-head>div:nth-of-type(4),
+.buger-container .main .project-bug-list .bug-list-item>div:nth-of-type(4){
+	width: 10%;
+}
+.buger-container .main .project-bug-list .bug-list-head>div:nth-of-type(5),
+.buger-container .main .project-bug-list .bug-list-item>div:nth-of-type(5){
+	width: 10%;
+}
+/*========================详情页弹框=================================*/
+.project-bug-dialog{
+	padding: 20px 0 10px;
+	background: #fff;
+	width: 600px;
+	height: 440px;
+	border-radius: 4px;
+}
+.project-bug-dialog .head{
+	height: 32px;
+	padding: 0 20px;
+}
+.project-bug-dialog .body{
+	height: 320px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	padding: 0 20px;
 }
 
 
@@ -430,8 +488,42 @@ html, body{
 
 /*input输入框*/
 .input-field{position: relative;margin: 30px 0;display: flex;align-items: center;}
-.input-field label{display: inline-block;width: 110px;font-size: 12px;color: #9B9B9B;text-align: right;margin-right: 16px;}
-.input-field input{height: 36px;border: none;outline: none;padding: 0 6px;border-bottom: 1px solid #ccc;flex-grow: 1;}
+.input-field>label{display: inline-block;width: 110px;font-size: 12px;color: #9B9B9B;text-align: right;margin-right: 16px;}
+.input-field>input{height: 36px;border: none;outline: none;padding: 0 6px;border-bottom: 1px solid #ccc;flex-grow: 1;}
+.input-field>textarea{flex-grow: 1;height: 80px;resize: none;overflow-y: auto;padding: 5px;outline: none;}
+.input-field .radio{display: flex;align-items: center;}
+.input-field .radio input[type='radio']{margin-right: 5px;}
+.input-field .radio>label{display: inline-block;font-size: 12px;color: #444;padding-right: 20px;}
 .input-field select{flex-grow: 1;}
 .input-field button{width: 100%;height: 36px;border: none;background: #448aff;border-radius: 4px;color: #fff;outline: none;cursor: pointer;}
 .input-field .input-error{font-size: 14px;color: red;position: absolute;width: 100%;left: 0;top: 100%;padding: 2px 6px;}
+
+
+/*用户选择部分*/
+.select-person-box{
+	position: relative;
+	display: flex;
+	padding: 20px 10px 10px;
+	font-size: 12px;
+}
+.select-person-box .left,
+.select-person-box .right{
+	width: 50%;
+}
+.select-person-box .left{
+	padding-top: 10px;
+}
+.select-person-box .right .person-item{
+	display: flex;
+	align-items: center;
+	height: 32px;
+}
+.select-person-box .right .person-item label{
+	display: inline-block;
+    width: 50%;
+}
+.select-person-box .right .person-item label>input{
+	margin-right: 10px;
+}
+
+

@@ -46,7 +46,7 @@
 				$(this).addClass('current-tabs-item');
 				$(this).siblings().removeClass('current-tabs-item');
 			}
-		})
+		});
 	}
 
 	function commonMenuOpen(menuId, evt){

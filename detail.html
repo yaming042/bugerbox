@@ -4,6 +4,8 @@
 	<meta charset="UTF-8">
 	<title>Bugerbox</title>
 	<link rel="stylesheet" href="http://at.alicdn.com/t/font_900209_724tiyqvfac.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+	<link rel="stylesheet" href="css/selectator.css">
 	<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
@@ -19,36 +21,32 @@
 		<div class="navbar">
 			<div class="menu">
 				<div class="menu-item menu-item-1 hoverItem">
-					列表列表列表
+					项目管理
 				</div>
 				<div class="menu-item menu-item-1">
-					列表列表列表
+					用户管理
 				</div>
 				<div class="menu-item menu-item-1">
-					列表列表列表
+					组管理
 				</div>
 			</div>
 		</div>
 		<div class="main">
-			<div class="bug-list project-list">
+			<div class="bug-list project-bug-list">
 				<div class="bug-list-head">
-					<div>项目ID</div>
 					<div>项目名称</div>
-					<div>管理员</div>
-					<div>开发人员</div>
-					<div>操作</div>
+					<div>Bug描述</div>
+					<div>经办人</div>
+					<div>报告人</div>
+					<div>状态</div>
 				</div>
 				<div class="bug-list-body">
-					<div class="bug-list-item">
-						<div>PID1234</div>
-						<div>测试项目</div>
+					<div class="bug-list-item" data-id="1">
+						<div>测试Bug</div>
+						<div>这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述</div>
+						<div>小王小明</div>
 						<div>admin</div>
-						<div>10</div>
-						<div>
-							<span class="iconfont-options">
-								<i class="iconfont option"></i>
-							</span>
-						</div>
+						<div style="color: red;">未解决</div>
 					</div>
 				</div>
 			</div>
@@ -57,14 +55,84 @@
 
 	<div id="dialog-detail" class="dialog-component">
 		<div class="content">
-			<div style="background: #fff;">
-				dialog content
+			<div class="create-project-dialog">
+				<div class="head">Bug名称</div>
+				<div class="body">
+					<div class="tabs">
+						<div class="tabs-item current-tabs-item" data-id="0"><span>Bug信息</span></div>
+						<div class="tabs-item" data-id="1"><span>经办人</span></div>
+						<div class="tabs-item" data-id="2"><span>报告人</span></div>
+					</div>
+
+					<div class="swiper-container">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide blue-slide">
+								<div class="project-base-form bugs-form">
+									<div class="input-field">
+										<label for="bDesc">Bug描述</label>
+										<textarea name="bDesc" id="bDesc" placeholder="输入项目描述"></textarea>
+										<p id="bDesc-err" class="input-error"></p>
+									</div>
+									<div class="input-field" style="width: auto;">
+										<label for="bStatus">Bug状态</label>
+										<div class="radio">
+											<label><input type="radio" name="bugStatus" value='1'/>未解决</label>
+											<label><input type="radio" name="bugStatus" value='2'/>已解决</label>
+											<label><input type="radio" name="bugStatus" value='3'/>讨论等待中</label>
+										</div>
+									</div>
+									<div class="input-field">
+										<label for="">Bug参考地址</label>
+										<input type="text" id="bReferUrl" placeholder="请输入Bug参考地址">
+									</div>
+									<div class="input-field">
+										<label for="">Bug产生原因</label>
+										<input type="text" id="bBugReason" placeholder="请填写Bug产生的大概原因">
+										<p id="bBugReason-err" class="input-error"></p>
+									</div>
+									<!-- <div class="input-field">
+										<label for="">Bug参考截图</label>
+										<div class="bug-refer-shots">
+											<img src="http://i1.statics.zlibs.com/uploadImages/WAmMMGeu1UX58KgdGUdk0Brl.png" alt="">
+										</div>
+									</div> -->
+								</div>
+							</div>
+							<div class="swiper-slide">
+								<div id="select-operator" class="select-person-box">
+									<div class="left">
+										Bug经办人
+									</div>
+									<div class="right person-list">
+										
+									</div>
+								</div>
+							</div>
+							<div class="swiper-slide">
+								Bug报告人
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="foot">
+					<div id="close-bug-dialog" class="bug-btn grey600">
+						取消
+					</div>
+					<div id="confirmEdit-bug-project" class="bug-btn blue600">
+						确定
+					</div>
+					<div id="confirmFixed-bug-project" class="bug-btn blue600">
+						Bug修改完成
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="mask"></div>
 	</div>
 
 	<script src="js/jquery.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script src="js/selectator.js"></script>
 	<script src="js/detail.js"></script>
 </body>
 </html>
