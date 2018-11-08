@@ -1,8 +1,9 @@
 (function(){
 	var errors = {
 		name: '',
-		email: '',
+		phone: '',
 	};
+	
 	function init(){
 		addEvent();
 		chrome.storage.sync.get(function(data){
@@ -17,16 +18,18 @@
 	function addEvent(){
 		$(document).on('click', '#reg-btn', function(e){
 			$("#userName").focus().blur();
-			$("#userEmail").focus().blur();
+			$("#userPhone").focus().blur();
 
-			if(errors.name || errors.email){
+			if(errors.name || errors.phone){
 				return;
 			}
 
-			var name = $("#userName").val();
-			var email = $("#userEmail").val();
+			var data = {
+				name: $("#userName").val(),
+				phone: $("#userPhone").val()
+			};
 
-			chrome.runtime.sendMessage({event: 'toIndex'},(response) => {
+			chrome.runtime.sendMessage({event: 'toIndex',data: data},(response) => {
 				console.log(response);
             });
 
@@ -46,18 +49,18 @@
 			}
 			$("#userName-err").text(errors.name);
 		});
-		$(document).on('focus', '#userEmail', function(e){
-			errors.email = '';
-			$("#userEmail-err").text(errors.email);
+		$(document).on('focus', '#userPhone', function(e){
+			errors.phone = '';
+			$("#userPhone-err").text(errors.phone);
 		});
-		$(document).on('blur', '#userEmail', function(e){
-			var email = e.target.value;
-			if(!email.length || !_isEmail(email)){
-				errors.email = '请填写正确的邮箱地址';
+		$(document).on('blur', '#userPhone', function(e){
+			var phone = e.target.value;
+			if(!phone.length || !_isPhone(phone) || !_isMobile(phone)){
+				errors.phone = '请填写正确的电话号码';
 			}else{
-				errors.email = '';
+				errors.phone = '';
 			}
-			$("#userEmail-err").text(errors.email);
+			$("#userPhone-err").text(errors.phone);
 		});
 
 

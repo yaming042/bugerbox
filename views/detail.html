@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bugerbox</title>
+	<link rel="stylesheet" href="http://at.alicdn.com/t/font_900209_8we2uinig74.css">
+	<link rel="stylesheet" href="../css/index.css">
+</head>
+<body>
+	<div class="buger-container">
+		<div class="header">
+			<div class="logo">
+				BugerBox
+			</div>
+			<div class="user-menu">
+				<i class="iconfont user"></i>
+			</div>
+		</div>
+		<div class="navbar">
+			<div class="menu">
+				<div class="menu-item menu-item-1 hoverItem">
+					我的项目
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="bug-list project-bug-list">
+				<div class="bug-list-head">
+					<div>项目名称</div>
+					<div>Bug描述</div>
+					<div>报告人</div>
+					<div>状态</div>
+				</div>
+				<div class="bug-list-body">
+					<div class="bug-list-item" data-id="1">
+						<div>测试Bug</div>
+						<div>这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述，这是一个测试bug的描述</div>
+						<div>admin</div>
+						<div style="color: red;">未解决</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="dialog-detail" class="dialog-component">
+		<div class="content">
+			<div class="create-project-dialog">
+				<div class="head">Bug名称</div>
+
+				<div class="body">
+					<div class="input-field">
+						<label for="bDesc">Bug描述</label>
+						<textarea name="bDesc" id="bDesc" placeholder="输入项目描述"></textarea>
+						<p id="bDesc-err" class="input-error"></p>
+					</div>
+					<div class="input-field" style="width: auto;">
+						<label for="bStatus">Bug状态</label>
+						<div class="radio">
+							<label><input type="radio" name="bugStatus" value='1'/>未解决</label>
+							<label><input type="radio" name="bugStatus" value='2'/>已解决</label>
+							<label><input type="radio" name="bugStatus" value='3'/>讨论等待中</label>
+						</div>
+					</div>
+					<div class="input-field">
+						<label for="">Bug参考地址</label>
+						<input type="text" id="bReferUrl" placeholder="请输入Bug参考地址">
+					</div>
+					<div class="input-field">
+						<label for="">Bug产生原因</label>
+						<input type="text" id="bBugReason" placeholder="请填写Bug产生的大概原因">
+						<p id="bBugReason-err" class="input-error"></p>
+					</div>
+					<!-- <div class="input-field">
+						<label for="">Bug参考截图</label>
+						<div class="bug-refer-shots">
+							<img src="http://i1.statics.zlibs.com/uploadImages/WAmMMGeu1UX58KgdGUdk0Brl.png" alt="">
+						</div>
+					</div> -->
+				</div>
+				<div class="foot">
+					<div id="close-bug-dialog" class="bug-btn grey600">
+						取消
+					</div>
+					<div id="confirmEdit-bug-project" class="bug-btn blue600">
+						完成修改
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mask"></div>
+	</div>
+
+	<script src="../js/jquery.js"></script>
+	<script src="../js/detail.js"></script>
+</body>
+</html>
