@@ -11,11 +11,11 @@
 				case 'toIndex':
 					var data = request.data;
 					// 调用接口判断是否是 管理员，根据用户类型显示不同的页面
-					/*
+					
 					ajax({
-						url: '',
+						url: 'http://47.94.97.168:8082/getUser',
 						type: 'GET',
-						data: request.data,
+						// data: request.data,
 						dataType: 'json',
 						success: function (res){
 							console.log(res);
@@ -24,7 +24,7 @@
 							console.log('获取用户类型失败，请稍后重试');
 						}
 					});
-					*/
+					
 					chrome.tabs.query(
 						{
 							active: true,

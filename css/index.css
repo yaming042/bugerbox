@@ -209,24 +209,6 @@ html, body{
 .bug-list .bug-list-body .bug-list-item>div{
 	display: flex;
 }
-.bug-list .bug-list-body .bug-list-item .iconfont-options{
-	display: flex;
-	width: 32px;
-	height: 32px;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50%;
-	cursor: pointer;
-}
-.iconfont-options:hover{
-	background: rgba(187, 187, 187, 0.5);
-}
-.bug-list .bug-list-body .bug-list-item .iconfont-options .iconfont{
-	font-size: 12px;
-}
-.bug-list .bug-list-body .bug-list-item.tr-bg .iconfont-options{
-	background: rgba(187, 187, 187, 0.5);
-}
 
 
 /*按钮*/
