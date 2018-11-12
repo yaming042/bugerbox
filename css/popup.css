@@ -3,16 +3,18 @@ html, body{width:100%;height:100%;font-family:'微软雅黑';font-size:16px;}
 
 .container-box{width:300px;padding:20px;}
 
-.input-field{position: relative;margin: 30px 0;}
+.input-field{position: relative;margin: 0 0 20px;}
+.input-field:first-child{margin-top: 5px;}
+.input-field:last-child{margin-bottom: 5px;}
 .input-field input{width:100%;height: 36px;border: 1px solid #ccc;border-radius: 4px;outline: none;padding: 0 6px;}
 .input-field button{width: 100%;height: 36px;border: none;background: #448aff;border-radius: 4px;color: #fff;outline: none;cursor: pointer;}
-.input-field .input-error{font-size: 14px;color: red;position: absolute;width: 100%;left: 0;top: 100%;padding: 2px 6px;}
+.input-field .input-error{font-size: 12px;color: red;position: absolute;width: 100%;left: 0;top: 100%;padding: 2px 6px;}
 
 .notes-field{position: relative;margin: 10px 0;}
 .notes-field p{font-size: 12px;color:#666;}
 
-/*.reg-box{display: none;}
-.login-box{display: none;}*/
+.reg-box{display: none;}
+.sign-in{display: none;}
 .middle-line-word{position: relative;text-align: center;font-size: 12px;color: #ccc;height: 12px;line-height: 12px;margin: 20px 0;}
 .middle-line-word span{padding: 0 10px;background: #fff;position: relative;z-index: 2;}
 .middle-line-word:after{content:'';display: block;width:100%;height:0;border:none;border-bottom: 1px solid #ccc;position: absolute;left: 0;top: 6px;}

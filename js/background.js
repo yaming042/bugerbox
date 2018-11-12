@@ -8,7 +8,7 @@
 		chrome.runtime.onMessage.addListener(function(request, send, response){
 			var event = request.event;
 			switch(event){
-				case 'toIndex':
+				case 'toSignUp':
 					var data = request.data;
 					// 调用接口判断是否是 管理员，根据用户类型显示不同的页面
 					
@@ -39,7 +39,40 @@
 					);
 					response({code: 200,data:'', msg:'success'});
 					break;
-				
+				case 'toSignIn':
+					var data = request.data;
+					// 调用接口判断是否是 管理员，根据用户类型显示不同的页面
+					
+					ajax({
+						url: 'http://47.94.97.168:8082/reg',
+						type: 'post',
+						data: data,
+						dataType: 'json',
+						success: function (res){
+							console.log(res);
+							if(res.code == 200){
+								chrome.tabs.query(
+									{
+										active: true,
+										currentWindow: true,
+										windowType: 'normal'
+									},
+									function(tabs){
+										if(tabs.length > 0){
+											window.open(chrome.runtime.getURL('views/index.html'));
+										}
+									}
+								);
+								response({code: 200,data:'', msg:'success'});
+							}
+						},
+						error: function (e){
+							console.log('用户注册失败，请稍后重试~');
+						}
+					});
+					
+					
+					break;
 
 				default:
 					break;
