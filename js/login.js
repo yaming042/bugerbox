@@ -1,7 +1,7 @@
 (function(){
 	var errors = {
 		name: '',
-		phone: '',
+		pwd: '',
 
 		regName: '',
 		regPwd: '',
@@ -21,13 +21,13 @@
 				created_at: xxxx
 			}
 			*/ 
-			if(data && data.hasOwnProperty('bugerboxUser')){//登录
-				$(".reg-box").show();
-				$('.sign-in').hide();
-			}else{//注册
-				$(".reg-box").hide();
-				$('.sign-in').show();
-			}
+			// if(data && data.hasOwnProperty('bugerboxUser')){//登录
+			// 	$(".reg-box").show();
+			// 	$('.sign-in').hide();
+			// }else{//注册
+			// 	$(".reg-box").hide();
+			// 	$('.sign-in').show();
+			// }
 		})
 	}
 
@@ -35,20 +35,38 @@
 		// 登录
 		$(document).on('click', '#reg-btn', function(e){
 			$("#userName").focus().blur();
-			$("#userPhone").focus().blur();
+			$("#userPwd").focus().blur();
 
-			if(errors.name || errors.phone){
+			if(errors.name || errors.pwd){
 				return;
 			}
 
 			var data = {
 				name: $("#userName").val(),
-				phone: $("#userPhone").val()
+				password: $("#userPwd").val()
 			};
 
-			chrome.runtime.sendMessage({event: 'toSignUp',data: data},(response) => {
+			chrome.runtime.sendMessage({event: 'toSignUp',data: data},function(response){
 				console.log(response);
-            });
+				var url = chrome.runtime.getURL('views/index.html');
+
+				if(response.code == 200){
+					chrome.tabs.query(
+						{
+							active: true,
+							currentWindow: true,
+							windowType: 'normal'
+						},
+						function(tabs){
+							if(tabs.length > 0){
+								window.open( url );
+							}
+						}
+					);
+				}else{
+					alert('登录失败，请稍后重试');
+				}
+			});
 
 			// todo....
 		});
@@ -92,18 +110,20 @@
 			}
 			$("#userName-err").text(errors.name);
 		});
-		$(document).on('focus', '#userPhone', function(e){
-			errors.phone = '';
-			$("#userPhone-err").text(errors.phone);
+		$(document).on('focus', '#userPwd', function(e){
+			errors.pwd = '';
+			$("#userPhone-err").text(errors.pwd);
 		});
-		$(document).on('blur', '#userPhone', function(e){
-			var phone = e.target.value;
-			if(!phone.length || !_isPhone(phone) || !_isMobile(phone)){
-				errors.phone = '请填写正确的电话号码';
+		$(document).on('blur', '#userPwd', function(e){
+			var val = e.target.value;
+			if(!val.length){
+				errors.pwd = '请填写你的登录密码';
+			}else if(val.length < 6 || val.length > 12){
+				errors.pwd = '登录密码建议长度6 ~ 12';
 			}else{
-				errors.phone = '';
+				errors.pwd = '';
 			}
-			$("#userPhone-err").text(errors.phone);
+			$("#userPhone-err").text(errors.pwd);
 		});
 		// 验证注册
 		$(document).on('focus', '#regUserName', function(e){
