@@ -12,7 +12,9 @@
 	
 	function init(){
 		addEvent();
+		// chrome.storage.sync.clear();
 		chrome.storage.sync.get(function(data){
+			console.log(data);
 			/**
 			{
 				userid: xxx,
@@ -21,13 +23,13 @@
 				created_at: xxxx
 			}
 			*/ 
-			// if(data && data.hasOwnProperty('bugerboxUser')){//登录
-			// 	$(".reg-box").show();
-			// 	$('.sign-in').hide();
-			// }else{//注册
-			// 	$(".reg-box").hide();
-			// 	$('.sign-in').show();
-			// }
+			if(data && data.hasOwnProperty('bugerboxUser')){//登录
+				$(".reg-box").show();
+				$('.sign-in').hide();
+			}else{//注册
+				$(".reg-box").hide();
+				$('.sign-in').show();
+			}
 		})
 	}
 
@@ -49,8 +51,11 @@
 			chrome.runtime.sendMessage({event: 'toSignUp',data: data},function(response){
 				console.log(response);
 				var url = chrome.runtime.getURL('views/index.html');
+				var admin = chrome.runtime.getURL('views/adminIndex.html');
 
 				if(response.code == 200){
+					chrome.storage.sync.set({'bugerboxUser': response.data}, function(){});
+
 					chrome.tabs.query(
 						{
 							active: true,
@@ -59,12 +64,15 @@
 						},
 						function(tabs){
 							if(tabs.length > 0){
-								window.open( url );
+								response.data.admin == 1 ?
+									window.open( admin )
+								:
+									window.open( url )
 							}
 						}
 					);
 				}else{
-					alert('登录失败，请稍后重试');
+					$("#login-err").text('用户名或密码错误');
 				}
 			});
 
@@ -100,6 +108,7 @@
 		$(document).on('focus', '#userName', function(e){
 			errors.name = '';
 			$("#userName-err").text(errors.name);
+			$("#login-err").text('');
 		});
 		$(document).on('blur', '#userName', function(e){
 			var name = e.target.value;
@@ -112,18 +121,19 @@
 		});
 		$(document).on('focus', '#userPwd', function(e){
 			errors.pwd = '';
-			$("#userPhone-err").text(errors.pwd);
+			$("#userPwd-err").text(errors.pwd);
+			$("#login-err").text('');
 		});
 		$(document).on('blur', '#userPwd', function(e){
 			var val = e.target.value;
 			if(!val.length){
 				errors.pwd = '请填写你的登录密码';
-			}else if(val.length < 6 || val.length > 12){
+			}else if(val.length < 4 || val.length > 12){
 				errors.pwd = '登录密码建议长度6 ~ 12';
 			}else{
 				errors.pwd = '';
 			}
-			$("#userPhone-err").text(errors.pwd);
+			$("#userPwd-err").text(errors.pwd);
 		});
 		// 验证注册
 		$(document).on('focus', '#regUserName', function(e){

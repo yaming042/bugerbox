@@ -13,17 +13,11 @@
 					// 调用接口判断是否是 管理员，根据用户类型显示不同的页面
 
 					ajax({
-						url: 'http://47.94.97.168:8082/login',
-						type: 'GET',
-						data: request.data,
+						url: 'http://47.94.97.168:8082/api/login?name='+data.name+'&password='+data.password,
 						dataType: 'json',
 						success: function (res){
-							console.log(res);
-							if(res.code == 200){
-								response({code: 200, data: res.data || '', msg: 'success'});
-							}else{
-								response({code: 400, data: '', msg: res.msg});
-							}
+							console.log('login response: ',res);
+							response(res);
 						},
 						error: function (e){
 							console.log('获取用户类型失败，请稍后重试');

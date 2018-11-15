@@ -2,10 +2,68 @@
 	var projectId = '';
 	var swiper_1 = null;
 
+	var users = [];
+	var projects = [];
+
 	function init(){
-		initSelectator();
+		if(data && data.hasOwnProperty('bugerboxUser')){
+			$("#username").text(data.bugerboxUser.name);
+		}
+
+		getUsers();//获取用户列表
+		getProjects();//获取项目列表
 		addListener();
 	}
+	getUsers(){
+		chrome.runtime.sendMessage({event: 'getUsers', data: ''}, function(response){
+			if(response.code == 200){
+				initSelectator();
+			}else{
+				console.log(response);
+			}
+		});
+	}
+	getProjects(){
+		chrome.runtime.sendMessage({event: 'getProjects', data: ''}, function(response){
+			if(response.code == 200){
+				renderProjectList();
+			}else{
+				console.log(response);
+			}
+		});
+	}
+
+	renderProjectList(){
+		/*
+		<div class="bug-list-item">
+						<div>测试项目</div>
+						<div>项目描述项目描述项目描述项目描述项目描述项目描述</div>
+						<div>admin</div>
+						<div>admin@163.com</div>
+						<div>10</div>
+						<div>
+							<span class="iconfont-options" data-id="1">
+								<i class="iconfont option"></i>
+							</span>
+						</div>
+					</div>
+		*/ 
+		var html = '';
+		projects.map(function(d, k){
+			html += '<div class="bug-list-item">'+
+						'<div>'+ d.name +'</div>'+
+						'<div>'+ d.desc +'</div>'+
+						'<div>'+ d.ower +'</div>'+
+						'<div>'+ d.email +'</div>'+
+						'<div>'+ d.devs +'</div>'+
+						'<div>'+
+							'<span class="iconfont-options" data-id="'+ d.id +'"><i class="iconfont option"></i></span>'+
+						'</div>'+
+					'</div>';
+		});
+	}
+
+
 	function addListener(){
 		$(document).on('click', '#create-project', function(e){
 			$("#dialog-index").css({'display':'block','opacity':1});
